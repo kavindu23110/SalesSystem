@@ -8,9 +8,9 @@ namespace SalesSystem.BLL.UserOperations
 {
  public   class Userprocess
     {
-        public bool ValidateUser(string username,string password)
-        {
+        //public bool ValidateUser(string username,string password)
+        //{
 
-        }
+        //}
     }
 }

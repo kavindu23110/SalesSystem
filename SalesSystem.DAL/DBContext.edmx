@@ -4,95 +4,675 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SalesSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="SalesSystemModelStoreContainer">
-    <EntitySet Name="Users" EntityType="SalesSystemModel.Store.Users" store:Type="Tables" Schema="dbo" />
-  </EntityContainer>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IsActive" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-</Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="SalesSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="SalesSystemEntities1" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="Users" EntityType="SalesSystemModel.User" />
-          <EntitySet Name="Stocks" EntityType="SalesSystemModel.Stock" />
-          <EntitySet Name="Roles" EntityType="SalesSystemModel.Roles" />
-          <EntitySet Name="StockProducts" EntityType="SalesSystemModel.StockProducts" />
-          <EntitySet Name="Products" EntityType="SalesSystemModel.Product" />
-          <EntitySet Name="ProductCategories1" EntityType="SalesSystemModel.ProductCategory" />
-        </EntityContainer>
-        <EntityType Name="User">
+    <Schema Namespace="SalesSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accesories">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" />
-          <Property Name="IsActive" Type="String" Nullable="false" />
-          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ProductCategoryId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Stock">
+        <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleID" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Rolename" Type="String" Nullable="false" />
-        </EntityType>
-        <EntityType Name="StockProducts">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StockId" Type="Int32" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Productname" Type="String" Nullable="false" />
-          <Property Name="ProductCategoryId" Type="String" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="BrandId" Type="int" Nullable="false" />
+          <Property Name="ProductDetailsId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductAccesories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AccesoryId" Type="int" Nullable="false" />
+          <Property Name="ProductDetailsId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Productdetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ProductCategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nchar" MaxLength="10" />
+          <Property Name="Isactive" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="StockProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="StockId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Accesories_ProductCategory">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1" />
+          <End Role="Accesories" Type="Self.Accesories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accesories">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Productdetails">
+          <End Role="Productdetails" Type="Self.Productdetails" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productdetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAccesories_Accesories">
+          <End Role="Accesories" Type="Self.Accesories" Multiplicity="1" />
+          <End Role="ProductAccesories" Type="Self.ProductAccesories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accesories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductAccesories">
+              <PropertyRef Name="AccesoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAccesories_Productdetails">
+          <End Role="Productdetails" Type="Self.Productdetails" Multiplicity="1" />
+          <End Role="ProductAccesories" Type="Self.ProductAccesories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productdetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductAccesories">
+              <PropertyRef Name="ProductDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productdetails_ProductCategory">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1" />
+          <End Role="Productdetails" Type="Self.Productdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Productdetails">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_user">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="StockProduct" Type="Self.StockProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockProduct_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="StockProduct" Type="Self.StockProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockProduct">
+              <PropertyRef Name="StockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDetails_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SalesSystemModelStoreContainer">
+          <EntitySet Name="Accesories" EntityType="Self.Accesories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductAccesories" EntityType="Self.ProductAccesories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productdetails" EntityType="Self.Productdetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockProduct" EntityType="Self.StockProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accesories_ProductCategory" Association="Self.FK_Accesories_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="Accesories" EntitySet="Accesories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Productdetails" Association="Self.FK_Product_Productdetails">
+            <End Role="Productdetails" EntitySet="Productdetails" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAccesories_Accesories" Association="Self.FK_ProductAccesories_Accesories">
+            <End Role="Accesories" EntitySet="Accesories" />
+            <End Role="ProductAccesories" EntitySet="ProductAccesories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAccesories_Productdetails" Association="Self.FK_ProductAccesories_Productdetails">
+            <End Role="Productdetails" EntitySet="Productdetails" />
+            <End Role="ProductAccesories" EntitySet="ProductAccesories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productdetails_ProductCategory" Association="Self.FK_Productdetails_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="Productdetails" EntitySet="Productdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_user" Association="Self.FK_Stock_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockProduct_Product" Association="Self.FK_StockProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="StockProduct" EntitySet="StockProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockProduct_Stock" Association="Self.FK_StockProduct_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="StockProduct" EntitySet="StockProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_Role" Association="Self.FK_user_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetails_user" Association="Self.FK_UserDetails_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SalesSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SalesSystemEntities1" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Accesories" EntityType="SalesSystemModel.Accesory" />
+          <EntitySet Name="Brands" EntityType="SalesSystemModel.Brand" />
+          <EntitySet Name="Products" EntityType="SalesSystemModel.Product" />
+          <EntitySet Name="ProductAccesories" EntityType="SalesSystemModel.ProductAccesory" />
+          <EntitySet Name="ProductCategories" EntityType="SalesSystemModel.ProductCategory" />
+          <EntitySet Name="Productdetails" EntityType="SalesSystemModel.Productdetail" />
+          <EntitySet Name="Roles" EntityType="SalesSystemModel.Role" />
+          <EntitySet Name="Stocks" EntityType="SalesSystemModel.Stock" />
+          <EntitySet Name="StockProducts" EntityType="SalesSystemModel.StockProduct" />
+          <EntitySet Name="users" EntityType="SalesSystemModel.user" />
+          <EntitySet Name="UserDetails" EntityType="SalesSystemModel.UserDetail" />
+          <AssociationSet Name="FK_Accesories_ProductCategory" Association="SalesSystemModel.FK_Accesories_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategories" />
+            <End Role="Accesory" EntitySet="Accesories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAccesories_Accesories" Association="SalesSystemModel.FK_ProductAccesories_Accesories">
+            <End Role="Accesory" EntitySet="Accesories" />
+            <End Role="ProductAccesory" EntitySet="ProductAccesories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Brand" Association="SalesSystemModel.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Productdetails" Association="SalesSystemModel.FK_Product_Productdetails">
+            <End Role="Productdetail" EntitySet="Productdetails" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockProduct_Product" Association="SalesSystemModel.FK_StockProduct_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="StockProduct" EntitySet="StockProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAccesories_Productdetails" Association="SalesSystemModel.FK_ProductAccesories_Productdetails">
+            <End Role="Productdetail" EntitySet="Productdetails" />
+            <End Role="ProductAccesory" EntitySet="ProductAccesories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productdetails_ProductCategory" Association="SalesSystemModel.FK_Productdetails_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategories" />
+            <End Role="Productdetail" EntitySet="Productdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_Role" Association="SalesSystemModel.FK_user_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_user" Association="SalesSystemModel.FK_Stock_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockProduct_Stock" Association="SalesSystemModel.FK_StockProduct_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="StockProduct" EntitySet="StockProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetails_user" Association="SalesSystemModel.FK_UserDetails_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="UserDetail" EntitySet="UserDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Accesory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ProductCategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductCategory" Relationship="SalesSystemModel.FK_Accesories_ProductCategory" FromRole="Accesory" ToRole="ProductCategory" />
+          <NavigationProperty Name="ProductAccesories" Relationship="SalesSystemModel.FK_ProductAccesories_Accesories" FromRole="Accesory" ToRole="ProductAccesory" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="SalesSystemModel.FK_Product_Brand" FromRole="Brand" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="BrandId" Type="Int32" Nullable="false" />
+          <Property Name="ProductDetailsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="SalesSystemModel.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="Productdetail" Relationship="SalesSystemModel.FK_Product_Productdetails" FromRole="Product" ToRole="Productdetail" />
+          <NavigationProperty Name="StockProducts" Relationship="SalesSystemModel.FK_StockProduct_Product" FromRole="Product" ToRole="StockProduct" />
+        </EntityType>
+        <EntityType Name="ProductAccesory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AccesoryId" Type="Int32" Nullable="false" />
+          <Property Name="ProductDetailsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accesory" Relationship="SalesSystemModel.FK_ProductAccesories_Accesories" FromRole="ProductAccesory" ToRole="Accesory" />
+          <NavigationProperty Name="Productdetail" Relationship="SalesSystemModel.FK_ProductAccesories_Productdetails" FromRole="ProductAccesory" ToRole="Productdetail" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accesories" Relationship="SalesSystemModel.FK_Accesories_ProductCategory" FromRole="ProductCategory" ToRole="Accesory" />
+          <NavigationProperty Name="Productdetails" Relationship="SalesSystemModel.FK_Productdetails_ProductCategory" FromRole="ProductCategory" ToRole="Productdetail" />
+        </EntityType>
+        <EntityType Name="Productdetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ProductCategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="SalesSystemModel.FK_Product_Productdetails" FromRole="Productdetail" ToRole="Product" />
+          <NavigationProperty Name="ProductAccesories" Relationship="SalesSystemModel.FK_ProductAccesories_Productdetails" FromRole="Productdetail" ToRole="ProductAccesory" />
+          <NavigationProperty Name="ProductCategory" Relationship="SalesSystemModel.FK_Productdetails_ProductCategory" FromRole="Productdetail" ToRole="ProductCategory" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Isactive" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="users" Relationship="SalesSystemModel.FK_user_Role" FromRole="Role" ToRole="user" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="user" Relationship="SalesSystemModel.FK_Stock_user" FromRole="Stock" ToRole="user" />
+          <NavigationProperty Name="StockProducts" Relationship="SalesSystemModel.FK_StockProduct_Stock" FromRole="Stock" ToRole="StockProduct" />
+        </EntityType>
+        <EntityType Name="StockProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="StockId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="SalesSystemModel.FK_StockProduct_Product" FromRole="StockProduct" ToRole="Product" />
+          <NavigationProperty Name="Stock" Relationship="SalesSystemModel.FK_StockProduct_Stock" FromRole="StockProduct" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="SalesSystemModel.FK_user_Role" FromRole="user" ToRole="Role" />
+          <NavigationProperty Name="Stocks" Relationship="SalesSystemModel.FK_Stock_user" FromRole="user" ToRole="Stock" />
+          <NavigationProperty Name="UserDetails" Relationship="SalesSystemModel.FK_UserDetails_user" FromRole="user" ToRole="UserDetail" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="SalesSystemModel.FK_UserDetails_user" FromRole="UserDetail" ToRole="user" />
+        </EntityType>
+        <Association Name="FK_Accesories_ProductCategory">
+          <End Type="SalesSystemModel.ProductCategory" Role="ProductCategory" Multiplicity="1" />
+          <End Type="SalesSystemModel.Accesory" Role="Accesory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accesory">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAccesories_Accesories">
+          <End Type="SalesSystemModel.Accesory" Role="Accesory" Multiplicity="1" />
+          <End Type="SalesSystemModel.ProductAccesory" Role="ProductAccesory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accesory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductAccesory">
+              <PropertyRef Name="AccesoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Brand">
+          <End Type="SalesSystemModel.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="SalesSystemModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Productdetails">
+          <End Type="SalesSystemModel.Productdetail" Role="Productdetail" Multiplicity="1" />
+          <End Type="SalesSystemModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productdetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockProduct_Product">
+          <End Type="SalesSystemModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="SalesSystemModel.StockProduct" Role="StockProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockProduct">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAccesories_Productdetails">
+          <End Type="SalesSystemModel.Productdetail" Role="Productdetail" Multiplicity="1" />
+          <End Type="SalesSystemModel.ProductAccesory" Role="ProductAccesory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productdetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductAccesory">
+              <PropertyRef Name="ProductDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productdetails_ProductCategory">
+          <End Type="SalesSystemModel.ProductCategory" Role="ProductCategory" Multiplicity="1" />
+          <End Type="SalesSystemModel.Productdetail" Role="Productdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Productdetail">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_Role">
+          <End Type="SalesSystemModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="SalesSystemModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_user">
+          <End Type="SalesSystemModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="SalesSystemModel.Stock" Role="Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockProduct_Stock">
+          <End Type="SalesSystemModel.Stock" Role="Stock" Multiplicity="1" />
+          <End Type="SalesSystemModel.StockProduct" Role="StockProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockProduct">
+              <PropertyRef Name="StockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDetails_user">
+          <End Type="SalesSystemModel.user" Role="user" Multiplicity="1" />
+          <End Type="SalesSystemModel.UserDetail" Role="UserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="SalesSystemModelStoreContainer" CdmEntityContainer="SalesSystemEntities1">
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="IsTypeOf(SalesSystemModel.User)">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-  </EntityContainerMapping>
+          <EntitySetMapping Name="Accesories">
+            <EntityTypeMapping TypeName="SalesSystemModel.Accesory">
+              <MappingFragment StoreEntitySet="Accesories">
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="SalesSystemModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="SalesSystemModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductDetailsId" ColumnName="ProductDetailsId" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductAccesories">
+            <EntityTypeMapping TypeName="SalesSystemModel.ProductAccesory">
+              <MappingFragment StoreEntitySet="ProductAccesories">
+                <ScalarProperty Name="ProductDetailsId" ColumnName="ProductDetailsId" />
+                <ScalarProperty Name="AccesoryId" ColumnName="AccesoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategories">
+            <EntityTypeMapping TypeName="SalesSystemModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productdetails">
+            <EntityTypeMapping TypeName="SalesSystemModel.Productdetail">
+              <MappingFragment StoreEntitySet="Productdetails">
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SalesSystemModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="SalesSystemModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockProducts">
+            <EntityTypeMapping TypeName="SalesSystemModel.StockProduct">
+              <MappingFragment StoreEntitySet="StockProduct">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="SalesSystemModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="SalesSystemModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->

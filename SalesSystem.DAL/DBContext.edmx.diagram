@@ -4,13 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="78ac6b1a558442bf94e6e3c27d6155c1" Name="Diagram1" ZoomLevel="150" >
-        <EntityTypeShape EntityType="SalesSystemModel.User" Width="1.5" PointX="1.625" PointY="1.125" />
-        <EntityTypeShape EntityType="SalesSystemModel.Stock" Width="1.5" PointX="6" PointY="1.25" />
-        <EntityTypeShape EntityType="SalesSystemModel.Roles" Width="1.5" PointX="3.75" PointY="1.125" />
-        <EntityTypeShape EntityType="SalesSystemModel.StockProducts" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="SalesSystemModel.Product" Width="1.5" PointX="8.5" PointY="3.75" />
-        <EntityTypeShape EntityType="SalesSystemModel.ProductCategory" Width="1.5" PointX="8.75" PointY="1.375" />
+      <Diagram DiagramId="78ac6b1a558442bf94e6e3c27d6155c1" Name="Diagram1" ZoomLevel="62" >
+        <EntityTypeShape EntityType="SalesSystemModel.Accesory" Width="1.5" PointX="3" PointY="11.375" />
+        <EntityTypeShape EntityType="SalesSystemModel.Brand" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="SalesSystemModel.Product" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="SalesSystemModel.ProductAccesory" Width="1.5" PointX="5.25" PointY="10.75" />
+        <EntityTypeShape EntityType="SalesSystemModel.ProductCategory" Width="1.5" PointX="0.75" PointY="6.5" />
+        <EntityTypeShape EntityType="SalesSystemModel.Productdetail" Width="1.5" PointX="3" PointY="6.25" />
+        <EntityTypeShape EntityType="SalesSystemModel.Role" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="SalesSystemModel.Stock" Width="1.5" PointX="5.25" PointY="3.5" />
+        <EntityTypeShape EntityType="SalesSystemModel.StockProduct" Width="1.5" PointX="7.5" PointY="3.375" />
+        <EntityTypeShape EntityType="SalesSystemModel.user" Width="1.5" PointX="3" PointY="1.875" />
+        <EntityTypeShape EntityType="SalesSystemModel.UserDetail" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="SalesSystemModel.FK_Accesories_ProductCategory" />
+        <AssociationConnector Association="SalesSystemModel.FK_ProductAccesories_Accesories" />
+        <AssociationConnector Association="SalesSystemModel.FK_Product_Brand" />
+        <AssociationConnector Association="SalesSystemModel.FK_Product_Productdetails" />
+        <AssociationConnector Association="SalesSystemModel.FK_StockProduct_Product" />
+        <AssociationConnector Association="SalesSystemModel.FK_ProductAccesories_Productdetails" />
+        <AssociationConnector Association="SalesSystemModel.FK_Productdetails_ProductCategory" />
+        <AssociationConnector Association="SalesSystemModel.FK_user_Role" />
+        <AssociationConnector Association="SalesSystemModel.FK_Stock_user" />
+        <AssociationConnector Association="SalesSystemModel.FK_StockProduct_Stock" />
+        <AssociationConnector Association="SalesSystemModel.FK_UserDetails_user" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
