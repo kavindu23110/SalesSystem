@@ -4,7 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="78ac6b1a558442bf94e6e3c27d6155c1" Name="Diagram1" />
+      <Diagram DiagramId="78ac6b1a558442bf94e6e3c27d6155c1" Name="Diagram1" ZoomLevel="150" >
+        <EntityTypeShape EntityType="SalesSystemModel.User" Width="1.5" PointX="1.625" PointY="1.125" />
+        <EntityTypeShape EntityType="SalesSystemModel.Stock" Width="1.5" PointX="6" PointY="1.25" />
+        <EntityTypeShape EntityType="SalesSystemModel.Roles" Width="1.5" PointX="3.75" PointY="1.125" />
+        <EntityTypeShape EntityType="SalesSystemModel.StockProducts" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalesSystemModel.Product" Width="1.5" PointX="8.5" PointY="3.75" />
+        <EntityTypeShape EntityType="SalesSystemModel.ProductCategory" Width="1.5" PointX="8.75" PointY="1.375" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

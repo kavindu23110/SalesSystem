@@ -25,5 +25,11 @@ namespace SalesSystem.DAL
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Stock> Stocks { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<StockProducts> StockProducts { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories1 { get; set; }
     }
 }
